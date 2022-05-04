@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "convert-string-to-number"
-version = "0.1.1"
+version = "0.1.2"
 description = "Convert string to number"
 authors = ["NamTH <namth2302@gmail.com>"]
 packages = [
