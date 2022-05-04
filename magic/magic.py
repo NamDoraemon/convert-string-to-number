@@ -14,7 +14,7 @@ str2int = lambda s: int(hashing_func(s.encode()).hexdigest(), 16)
 
 
 class Magic:
-    def __init__(self, source=None, size=10_000_000_000):
+    def __init__(self, source=None, size=99_999_999_999):
         self.source = source
         self.size = size
         self.hash_number = None
