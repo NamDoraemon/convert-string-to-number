@@ -25,7 +25,7 @@ class Magic:
     def set_max_size(self, size):
         self.size = size
 
-    def convert2Int(self):
+    def convert(self):
         if self.source is None:
             raise ValueError("source is required")
 
@@ -41,3 +41,18 @@ class Magic:
 
     def get_size(self):
         return self.size
+
+
+def string_folding(string, int_length):
+  if not string:
+    return 0
+
+  multi = 1
+  total = 0
+  for i in range(0, len(string)):
+    if i % 4 == 0:
+      multi = 1
+    else:
+      multi = multi * 256
+    total += ord(string[i]) * multi
+  return total % int_length
