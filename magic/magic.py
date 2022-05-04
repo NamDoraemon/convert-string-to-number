@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import hashlib
+import numpy as np
 
 # there are a number of hashing functions you can pick, and they provide tags of different lengths and security levels.
 hashing_func = hashlib.md5
@@ -13,46 +14,28 @@ hashing_func = hashlib.md5
 str2int = lambda s: int(hashing_func(s.encode()).hexdigest(), 16)
 
 
-class Magic:
-    def __init__(self, source=None, size=99_999_999_999):
-        self.source = source
-        self.size = size
-        self.hash_number = None
+class MagicString:
+    def str2number(self, source: str, size=99_999_999_999):
+        if not source or source is None:
+            raise ValueError("Thiếu thông tin đầu vào")
 
-    def set_source(self, source):
-        self.source = source
+        source_length = len(source)
+        delta = 1
+        total = 0
 
-    def set_max_size(self, size):
-        self.size = size
+        for i in range(source_length):
+            if i % 4 == 0:
+                delta = 1
+            else:
+                delta = delta * 256
+            total += ord(source[i]) * delta
+        return total % size
 
-    def convert(self):
-        if self.source is None:
-            raise ValueError("source is required")
+    def str2int(self, source: str, size=99_999_999_999):
+        if not source or source is None:
+            raise ValueError("Thiếu thông tin đầu vào")
 
-        source_hash = str2int(self.source)
-        self.hash_number = source_hash % self.size
-        return self.hash_number
-
-    def get_hash_number(self):
-        return self.hash_number
-
-    def get_source(self):
-        return self.source
-
-    def get_size(self):
-        return self.size
+        return str2int(source) % size
 
 
-def string_folding(string, int_length):
-  if not string:
-    return 0
-
-  multi = 1
-  total = 0
-  for i in range(0, len(string)):
-    if i % 4 == 0:
-      multi = 1
-    else:
-      multi = multi * 256
-    total += ord(string[i]) * multi
-  return total % int_length
+magic_str = MagicString()
