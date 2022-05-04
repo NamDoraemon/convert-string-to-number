@@ -4,8 +4,8 @@ version = "0.1.0"
 description = "Convert string to number"
 authors = ["NamTH <namth2302@gmail.com>"]
 packages = [
-    { include = "src" },
-    { include = "src/**/*.py" },
+    { include = "magic" },
+    { include = "magic/**/*.py" },
 ]
 
 [tool.poetry.dependencies]
